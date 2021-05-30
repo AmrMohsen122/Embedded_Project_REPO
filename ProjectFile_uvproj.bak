@@ -435,6 +435,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>initFunction.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\initFunction.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
