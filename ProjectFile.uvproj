@@ -425,6 +425,21 @@
               <FileType>5</FileType>
               <FilePath>.\Headers\functions_prototype.h</FilePath>
             </File>
+            <File>
+              <FileName>distance.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\distance.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>initFunction.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\initFunction.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
