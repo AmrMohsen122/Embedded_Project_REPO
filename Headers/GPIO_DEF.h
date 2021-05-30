@@ -54,5 +54,11 @@
 		#define PORTF2 2
 		#define PORTF3 3
 		#define PORTF4 4
+		//LCD COMMANDS DEFINITIONS
+		#define clear 0x01
+		#define dec_cursor 0x04
+		#define inc_cursor 0x06
+		#define display_on 0x0F
+		
 #endif
 	

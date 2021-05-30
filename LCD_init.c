@@ -1,4 +1,13 @@
-#inclue"tm4c123gh6pm.h"
+#include "Headers/tm4c123gh6pm.h"
+#include "Headers/GPIO_DEF.h"
+/*
+d0 --> lcd register select rs
+d1 --> lcd read/write RW
+d2 --> lcd enable
+*/
+
+
+
 void LCD_comm(char c){
 	GPIO_PORTD_DATA_R = O;
 	GPIO_PORTB_DATA_R = c;
@@ -6,6 +15,16 @@ void LCD_comm(char c){
 	delay(230);
 	GPIO_PORTD_DATA_R &= 0;
 }
+
+void LCD_data(unsigned char c){
+	GPIO_PORTB_DATA_R = c;					//ready up data to be displayed
+	GPIO_PORTD_DATA_R |= (1 << PORTD0);		//select the lcd_data register
+	GPIO_PORTD_DATA_R &= ~(1 << PORTD1);	//set lcd to write mode
+	GPIO_PORTD_DATA_R |= (1 << PORTD2); 	//pull the enable to high
+	delay(230);
+	GPIO_PORTD_DATA_R &= ~(1 << PORTD2);	//pull the enable to low
+}
+
 void LCD_init(){
 	SYSCTL_RCGCGPIO_R |=0xA;
 	GPIO_PORTB_DIR_R = 0xff;
