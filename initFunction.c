@@ -44,9 +44,9 @@ void init_ports(){
 	GPIO_PORTD_DIR_R &= ~((1 << PORTD6) | (1 << PORTD7)); //Enable PINS D6, D7 as inputs for GPS
 	GPIO_PORTD_AMSEL_R &= ~((1 << PORTD6) | (1 << PORTD7) ); //disable analog signals 
 	GPIO_PORTD_PCTL_R |= (0x11000000); 	//use PINS D6, D7 as UART Tx, Rx
-	GPIO_PORTD_AFSEL_R |= ((1 << PORTD6) | (1 << PORTD7) ));//enable alternate function
+	GPIO_PORTD_AFSEL_R |= ((1 << PORTD6) | (1 << PORTD7) );//enable alternate function
 	GPIO_PORTD_DEN_R |= ((1 << PORTD6) | (1 << PORTD7) ); //enable PINS D6, D7 as Digital pins
-	UART6_CTL_R |= (0x01); // Enable UART2 Tx, Rx
+	UART2_CTL_R |= (0x01); // Enable UART2 Tx, Rx
 
 
 
