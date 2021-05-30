@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 #include "Headers/tm4c123gh6pm.h"
 #include "Headers/GPIO_DEF.h"
-/*
-d0 --> lcd register select rs
-d1 --> lcd read/write RW
-d2 --> lcd enable
-*/
 
-
-
-=======
 //LCD command function for setting portB(data) portD(command)
 //(d0 --> lcd register select rs d1 --> lcd read/write RW d2 --> lcd enable)
->>>>>>> eb5909331e32eb23e08c80ecca24decdfe254186
+
 void LCD_comm(char c){
 	GPIO_PORTD_DATA_R &= ~0x07;
 	GPIO_PORTB_DATA_R = c;
@@ -20,7 +11,7 @@ void LCD_comm(char c){
 	delay(230)
 	GPIO_PORTD_DATA_R &= 0;
 }
-<<<<<<< HEAD
+
 
 void LCD_data(unsigned char c){
 	GPIO_PORTB_DATA_R = c;					//ready up data to be displayed
@@ -31,9 +22,7 @@ void LCD_data(unsigned char c){
 	GPIO_PORTD_DATA_R &= ~(1 << PORTD2);	//pull the enable to low
 }
 
-=======
 //initializing portB and portD(DO~D02)
->>>>>>> eb5909331e32eb23e08c80ecca24decdfe254186
 void LCD_init(){
 	SYSCTL_RCGCGPIO_R |=0xA;//clack initiation portB,portD
 	GPIO_PORTB_DIR_R = 0xff;//direction init for portB
