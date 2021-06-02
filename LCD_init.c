@@ -8,7 +8,7 @@ void LCD_comm(char c){
 	GPIO_PORTD_DATA_R &= ~0x07;
 	GPIO_PORTB_DATA_R = c;
 	GPIO_PORTD_DATA_R |= 0x04;
-	delay(230)
+	delay(230);
 	GPIO_PORTD_DATA_R &= 0;
 }
 
@@ -30,7 +30,7 @@ void LCD_init(){
 	GPIO_PORTB_AFSEL_R = 0;//disable analog function
 	GPIO_PORTB_AMSEL_R = 0;
 	GPIO_PORTD_DIR_R |= 0x7;//direction init for portD(D0~D2)
-	GPIO_PORTD_DEN_R | = 0x7;//digital enable for portD(D0~D2)
+	GPIO_PORTD_DEN_R |= 0x7;//digital enable for portD(D0~D2)
 	GPIO_PORTD_AFSEL_R &= ~0x07;//disable analog function
 	GPIO_PORTD_AMSEL_R &= ~0x07;
 	LCD_comm(0x30);//LCD wakeup
@@ -43,11 +43,4 @@ void LCD_init(){
 	delay(20);
 	LCD_comm(display_on);//display on
 	delay(20);
-}
-
-void LCD_display_string(unsigned char* str){
-	for(int i = 0 ; str[i] != '\0' ; i++){
-		LCD_Data(str[i]);  
-		LCD_comm(inc_cursor);
-	}
 }
