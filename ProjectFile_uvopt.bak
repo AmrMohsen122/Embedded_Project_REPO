@@ -247,7 +247,7 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>17</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
       <CurrentLine>1</CurrentLine>
@@ -279,10 +279,17 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
+<<<<<<< HEAD
       <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>14</TopLine>
       <CurrentLine>37</CurrentLine>
+=======
+      <ColumnNumber>10</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
+>>>>>>> 82d27f03184e2b6cbe989a30af1338d792141168
       <bDave2>0</bDave2>
       <PathWithFileName>.\initFunction.c</PathWithFileName>
       <FilenameWithoutPath>initFunction.c</FilenameWithoutPath>
