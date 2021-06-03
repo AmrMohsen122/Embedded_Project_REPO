@@ -4,7 +4,7 @@ void LCD_comm(char c){
 	GPIO_PORTD_DATA_R &= ~0x07;
 	GPIO_PORTB_DATA_R = c;
 	GPIO_PORTD_DATA_R |= 0x04;
-	delay(230)
+	delay(230);
 	GPIO_PORTD_DATA_R &= 0;
 }
 //initializing portB and portD(DO~D02)
