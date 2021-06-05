@@ -4,13 +4,15 @@
 //LCD command function for setting portB(data) portD(command)
 //(d0 --> lcd register select rs d1 --> lcd read/write RW d2 --> lcd enable)
 
-void LCD_comm(char c)
+void LCD_comm(unsigned char c)
 {
 	GPIO_PORTD_DATA_R &= ~0x07;
 	GPIO_PORTB_DATA_R = c;
+	if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3);
 	GPIO_PORTD_DATA_R |= 0x04;
-	delay(230);
-	GPIO_PORTD_DATA_R &= 0;
+	delay_us(1);
+	GPIO_PORTD_DATA_R &= ~(0x04);
+	delay_us(1);
 }
 
 void LCD_data(unsigned char c)
@@ -26,26 +28,15 @@ void LCD_data(unsigned char c)
 //initializing portB and portD(DO~D02)
 void LCD_init()
 {
-	SYSCTL_RCGCGPIO_R |= 0xA; //clack initiation portB,portD
-	GPIO_PORTB_DIR_R = 0xff;  //direction init for portB
-	GPIO_PORTB_DEN_R = 0Xff;  //digital enable portB
-	GPIO_PORTB_AFSEL_R = 0;	  //disable analog function
-	GPIO_PORTB_AMSEL_R = 0;
-	GPIO_PORTD_DIR_R |= 0x7;	 //direction init for portD(D0~D2)
-	GPIO_PORTD_DEN_R |= 0x7;	 //digital enable for portD(D0~D2)
-	GPIO_PORTD_AFSEL_R &= ~0x07; //disable analog function
-
-	GPIO_PORTD_AMSEL_R &= ~0x07;
-	LCD_comm(0x30); //LCD wakeup
-	delay(20);
-	LCD_comm(0x38); //enabling 2 line deisplay
-	delay(20);
-	LCD_comm(clear); //clear display
-	delay(20);
-	LCD_comm(inc_cursor); //cursor increment
-	delay(20);
-	LCD_comm(display_on); //display on
-	delay(20);
+	 delay_ms(voltage_risetime);
+	 LCD_comm(on_8bit_mode); 							// Select 8-bit Mode of LCD
+	 delay_us(command_delay);
+     LCD_comm(display_on);  							// display on , cursor blinking
+	 delay_us(command_delay);
+	 LCD_comm(auto_inc_cursor);							//auto increment cursor
+	 delay_us(command_delay);
+	 LCD_comm(clear); 									//clear display
+	 delay_ms(5);
 }
 
 void LCD_display_string(unsigned char *str)
@@ -56,15 +47,21 @@ void LCD_display_string(unsigned char *str)
 		LCD_comm(inc_cursor);
 	}
 }
-void delay(int a)
+void delay_ms(int n)
 {
-	int add;
-	int time;
-	time = a * 1000000;
-	for (int i = 0; i < time; i++)
-	{
-		add = i;
-		add++;
-		add++;
+	int x , y;
+	for(x = 0; x < n ; x++){
+		for(y = 0 ; y < 3180;y++)
+		{}
+	
+	}
+}
+
+void delay_us(int n)
+{
+ int i,j;
+ for(i=0;i<n;i++){
+	for(j=0;j<3;j++){}
+	
 	}
 }
