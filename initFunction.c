@@ -26,12 +26,12 @@ void init_ports(){
 	GPIO_PORTB_DEN_R = 0xFF;				//enable digital signals
 	//PORTF init
 	GPIO_PORTF_LOCK_R = GPIO_LOCK_KEY;		//unlock portf
-	GPIO_PORTF_CR_R |= (1 << PORTF2);		//enable changes on PORTF2
-	GPIO_PORTF_DIR_R |= (1 << PORTF2);		//set PORTF2 to output
+	GPIO_PORTF_CR_R |= (1 << PORTF1);		//enable changes on PORTF1
+	GPIO_PORTF_DIR_R |= (1 << PORTF1);		//set PORTF1 to output
 	GPIO_PORTF_PCTL_R = 0x00000000;		    //PORTF AS GPIO
-	GPIO_PORTF_AMSEL_R  &= ~(1 << PORTF2); 	//disable analog signals	
-	GPIO_PORTF_AFSEL_R &= ~(1 << PORTF2);	//disable alternate function for PORTF2
-	GPIO_PORTF_DEN_R |= (1 << PORTF2) ;		//enable digital signals
+	GPIO_PORTF_AMSEL_R  &= ~(1 << PORTF1); 	//disable analog signals	
+	GPIO_PORTF_AFSEL_R &= ~(1 << PORTF1);	//disable alternate function for PORTF1
+	GPIO_PORTF_DEN_R |= (1 << PORTF1) ;		//enable digital signals
 	//PORTD init
 	GPIO_PORTD_LOCK_R = GPIO_LOCK_KEY;
 	GPIO_PORTD_CR_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3));
@@ -56,7 +56,4 @@ void init_ports(){
 	GPIO_PORTD_DIR_R |= (1 << PORTD7) ; 						//Enable PIN D7 as output for GPS
 	GPIO_PORTD_DEN_R |= ((1 << PORTD6) | (1 << PORTD7) ); 		//enable PINS D6, D7 as Digital pins
 	UART2_CTL_R |= (0x01); 										// Enable UART2 Tx, Rx
-
-
-
 }
