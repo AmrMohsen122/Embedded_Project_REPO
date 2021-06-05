@@ -17,13 +17,16 @@ void LCD_comm(unsigned char c)
 
 void LCD_data(unsigned char c)
 {
-	GPIO_PORTB_DATA_R = c;				 //ready up data to be displayed
-	GPIO_PORTD_DATA_R |= (1 << PORTD0);	 //select the lcd_data register
-	GPIO_PORTD_DATA_R &= ~(1 << PORTD1); //set lcd to write mode
-	GPIO_PORTD_DATA_R |= (1 << PORTD2);	 //pull the enable to high
-	delay(230);
-	GPIO_PORTD_DATA_R &= ~(1 << PORTD2); //pull the enable to low
+    GPIO_PORTB_DATA_R = c;                				  //ready up data to be displayed
+    if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3);
+	GPIO_PORTD_DATA_R |= (1 << PORTD0);   				  //RS is set
+	GPIO_PORTD_DATA_R &= ~(1 << PORTD1);  				  //R/W is reseted
+	GPIO_PORTD_DATA_R |= (1 << PORTD2);	 				  //pull the enable to high
+	delay_us(1);						  				  //enable high hold time
+	GPIO_PORTD_DATA_R &= ~(1 << PORTD2);  				  //pull the enable to low
+	delay_us(1);
 }
+
 
 //initializing portB and portD(DO~D02)
 void LCD_init()
@@ -41,12 +44,15 @@ void LCD_init()
 
 void LCD_display_string(unsigned char *str)
 {
-	for (int i = 0; str[i] != '\0'; i++)
+	int i;
+	for(i = 0; str[i] != '\0'; i++)
 	{
-		LCD_Data(str[i]);
-		LCD_comm(inc_cursor);
+		LCD_data(str[i]);
+		delay_us(data_delay);
 	}
-}
+}	
+
+
 void delay_ms(int n)
 {
 	int x , y;
