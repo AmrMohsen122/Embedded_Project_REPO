@@ -1,13 +1,15 @@
 #include "Headers/functions_prototype.h"
 #include "Headers/GPIO_DEF.h"
-int main()
+int main(void)
 {
+    init_ports();
+    delay_ms(50);
     LCD_init();
+    delay_ms(20);
+    LCD_display_string("Hello World! 12");
     while (1)
     {
-        LCD_comm(display_on);
-        LCD_comm(clear);
-        LCD_data('A');
+
     }
 
     return 0;

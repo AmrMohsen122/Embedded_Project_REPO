@@ -11,9 +11,14 @@ PORTF PORTF2 -->LED
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 void init_ports(){
-	SYSCTL_RCGCGPIO_R |= ((1 << PORTB) | (1 << PORTD) | (1 << PORTF)); //ENABLE CLK FOR PORTS B, F, D
-	while((SYSCTL_PRGPIO_R & ((1 << PORTB) | (1 << PORTD) | (1 << PORTF))) == 0){}//WAIT FOR CLK TO BE ENABLED
+	SYSCTL_RCGCGPIO_R |= (1 << PORTF) ; //ENABLE CLK FOR PORTS B, F, D
+	while((SYSCTL_PRGPIO_R & (1 << PORTF)) == 0){}
+	SYSCTL_RCGCGPIO_R |= (1 << PORTB);
+	while((SYSCTL_PRGPIO_R & (1 << PORTB)) == 0){}
+	SYSCTL_RCGCGPIO_R |= (1 << PORTD) ;
+	while((SYSCTL_PRGPIO_R & (1 << PORTD)) == 0){}
 	//PORTB init
+	GPIO_PORTB_CR_R = 0xFF;
 	GPIO_PORTB_DIR_R = 0xFF;				//Set portB pins to output
 	GPIO_PORTB_AFSEL_R = 0x00;				//disable portB pin alternate function
 	GPIO_PORTB_PCTL_R = 0x00000000;			//PORTB AS GPIO
@@ -28,11 +33,13 @@ void init_ports(){
 	GPIO_PORTF_AFSEL_R &= ~(1 << PORTF2);	//disable alternate function for PORTF2
 	GPIO_PORTF_DEN_R |= (1 << PORTF2) ;		//enable digital signals
 	//PORTD init
-	GPIO_PORTD_DIR_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2)); //PORTD0-D2 output for lcd_ctl
-	GPIO_PORTD_AMSEL_R &= ~((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2));//disable analog signals 
-	GPIO_PORTD_PCTL_R &= ~(0x00000FFF); 	//use PORTD0-D2 as GPIO
-	GPIO_PORTD_AFSEL_R &= ~((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2));//disable alternate function
-	GPIO_PORTD_DEN_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2));   //enable digital signals
+	GPIO_PORTD_LOCK_R = GPIO_LOCK_KEY;
+	GPIO_PORTD_CR_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3));
+	GPIO_PORTD_DIR_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3)); //PORTD0-D2 output for lcd_ctl
+	GPIO_PORTD_AMSEL_R &= ~((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3));//disable analog signals
+	GPIO_PORTD_PCTL_R &= ~(0x0000FFFF); 	//use PORTD0-D2 as GPIO
+	GPIO_PORTD_AFSEL_R &= ~((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3));//disable alternate function
+	GPIO_PORTD_DEN_R |= ((1 << PORTD0) | (1 << PORTD1) | (1 << PORTD2) | (1 << PORTD3));   //enable digital signals
 	//UART init 
     SYSCTL_RCGCUART_R |= (0x0004);
  	GPIO_PORTD_LOCK_R = GPIO_LOCK_KEY; 							//Unlock PORT D
