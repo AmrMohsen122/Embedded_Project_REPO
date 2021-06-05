@@ -56,9 +56,12 @@
 		#define PORTF4 4
 		//LCD COMMANDS DEFINITIONS
 		#define clear 0x01
-		#define dec_cursor 0x04
-		#define inc_cursor 0x06
+		#define on_8bit_mode 0x38
+		#define auto_inc_cursor 0x06
 		#define display_on 0x0F
+		#define voltage_risetime 20  //ms
+		#define command_delay 50     //us
+		#define data_delay 50 		 //us
 		
 #endif
 	
