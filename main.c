@@ -9,7 +9,8 @@ int main(void)
     LCD_display_string("123");
     while (1)
     {
-
+        double distance = 102;
+        REDLed(distance);
     }
 
     return 0;
