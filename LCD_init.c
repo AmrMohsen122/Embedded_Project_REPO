@@ -34,6 +34,7 @@ void LCD_init()
 	GPIO_PORTD_DIR_R |= 0x7;	 //direction init for portD(D0~D2)
 	GPIO_PORTD_DEN_R |= 0x7;	 //digital enable for portD(D0~D2)
 	GPIO_PORTD_AFSEL_R &= ~0x07; //disable analog function
+
 	GPIO_PORTD_AMSEL_R &= ~0x07;
 	LCD_comm(0x30); //LCD wakeup
 	delay(20);
