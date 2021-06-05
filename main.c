@@ -6,7 +6,7 @@ int main(void)
     delay_ms(50);
     LCD_init();
     delay_ms(20);
-    LCD_display_string("Hello World! 12");
+    LCD_display_string("123");
     while (1)
     {
 
