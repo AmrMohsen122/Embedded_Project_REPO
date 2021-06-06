@@ -19,6 +19,7 @@ void LCD_data(unsigned char c)
 {
     GPIO_PORTB_DATA_R = c;                				  //ready up data to be displayed
     if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3);
+	else GPIO_PORTD_DATA_R &= ~(1 << PORTD3);
 	GPIO_PORTD_DATA_R |= (1 << PORTD0);   				  //RS is set
 	GPIO_PORTD_DATA_R &= ~(1 << PORTD1);  				  //R/W is reseted
 	GPIO_PORTD_DATA_R |= (1 << PORTD2);	 				  //pull the enable to high
