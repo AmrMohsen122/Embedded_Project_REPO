@@ -13,4 +13,6 @@ void LCD_comm(unsigned char c);
 void LCD_init(void);
 void REDLed(double distance);
 void init_ports(void);
+void get_nema_string(char *arr, int *cont);
+unsigned char UART_receive(void);
 #endif // !functions_prototype
