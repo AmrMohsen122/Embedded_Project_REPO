@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "tm4c123gh6pm.h": "c"
+        "tm4c123gh6pm.h": "c",
+        "gpio_def.h": "c"
     }
 }
