@@ -33,8 +33,8 @@ void get_nema_string(char *arr, int *cont)
     {
         memcpy(arr, str, 100);
         *cont = 0;
-				//LCD_data('9');
-				//LCD_display_string(arr);
+		//LCD_data('9');
+		//LCD_display_string(arr);
         //delay_ms(1500);
         //LCD_comm(clear);
         //delay_ms(2);
