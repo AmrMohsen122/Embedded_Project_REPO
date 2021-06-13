@@ -16,4 +16,5 @@ void init_ports(void);
 void get_nema_string(char *arr, int *cont);
 void getPosition(char *string, double *coordinates );
 unsigned char UART_receive(void);
+void reverseArray(char *arr, char *reversed);
 #endif // !functions_prototype
