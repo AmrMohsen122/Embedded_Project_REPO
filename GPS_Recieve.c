@@ -33,34 +33,30 @@ void get_nema_string(char *arr, int *cont)
     {
         memcpy(arr, str, 100);
         *cont = 0;
-		//LCD_data('9');
-		//LCD_display_string(arr);
+        //LCD_data('9');
+        //LCD_display_string(arr);
         //delay_ms(1500);
         //LCD_comm(clear);
         //delay_ms(2);
     }
-		else *cont = 1;
+    else
+        *cont = 1;
     free(str);
-
-
 }
-void getPosition(char *string, double *coordinates )
+void getPosition(char *string, double *coordinates)
 {
 
-				char *parsed[20];
-        int i = 0;
-        char *token;
-        token = strtok(string, ",");
-        while (token != NULL)
-        {
-            parsed[i++] = token;
-            token = strtok(NULL, ",");
-            if (i == 20)
-                break;
-					}
-    coordinates[0] = (strtod(parsed[3] , NULL)) ;  //lat
-    coordinates[1] = (strtod(parsed[5] , NULL));  //long
-
+    static char *parsed[20];
+    int i = 0;
+    static char *token;
+    token = strtok(string, ",");
+    while (token != NULL)
+    {
+        parsed[i++] = token;
+        token = strtok(NULL, ",");
+        if (i == 20)
+            break;
+    }
+    coordinates[0] = (strtod(parsed[3], NULL)); //lat
+    coordinates[1] = (strtod(parsed[5], NULL)); //long
 }
-
-
