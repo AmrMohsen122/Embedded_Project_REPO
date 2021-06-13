@@ -14,7 +14,7 @@ unsigned char UART_receive(void)
     return (unsigned char)(UART2_DR_R & 0xFF);
 }
 
-void get_nema_string(char *arr, int *cont)
+void get_nema_string(char *arr, int *cont) // Function for recieving $GPRMC sentence from gps
 {
     int i;
     char *str = malloc(100);
@@ -33,18 +33,16 @@ void get_nema_string(char *arr, int *cont)
     {
         memcpy(arr, str, 100);
         *cont = 0;
-		//LCD_data('9');
-		//LCD_display_string(arr);
-        //delay_ms(1500);
-        //LCD_comm(clear);
-        //delay_ms(2);
+		
     }
 		else *cont = 1;
     free(str);
 
 
 }
-void getPosition(char *string, double *coordinates )
+
+
+void getPosition(char *string, double *coordinates ) //Function for extracting longitude and latitude from nema sentence recived
 {
 
 				char *parsed[20];
