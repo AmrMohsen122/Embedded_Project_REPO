@@ -5,6 +5,10 @@ void reverseArray(char *arr, char *reversed) {
     for (i = 0; i < j; i++) {
         reversed[i] = arr[j - (i + 1)];
     }
+<<<<<<< HEAD
+=======
+   
+>>>>>>> d10dc64c60bcea787c2ea0222af414e49a180f3e
 }
 
 char *int_to_char(int x){
