@@ -26,7 +26,7 @@ int main(void)
 				get_nema_string(arr , &cont);
 			}
 			cont = 1;
-			if((GPIO_PORTF_DATA_R & ~0x01) ==0){break;}
+			if((GPIO_PORTF_DATA_R & 0x01) ==0){break;}
 			getPosition(arr , coordinates[1]);
 			calcDistance(coordinates[0][1] , coordinates[1][1] , coordinates[0][0], coordinates[1][0] , &amount);
 			distance += amount;
