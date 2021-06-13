@@ -6,26 +6,29 @@
 
 void LCD_comm(unsigned char c)
 {
-	GPIO_PORTD_DATA_R &= ~0x07;
-	GPIO_PORTB_DATA_R = c;
-	if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3);
-	GPIO_PORTD_DATA_R |= 0x04;
+	GPIO_PORTB_DATA_R = c;															//ready up command
+	if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3); 		//PORTB6 had some errors; command is masked 
+	else GPIO_PORTD_DATA_R &= ~(1 << PORTD3);						//the masked data is outputed on PORTD3 instead
+	GPIO_PORTA_DATA_R &= ~(1 << PORTA5);								//RS is reseted
+	GPIO_PORTA_DATA_R &= ~(1 << PORTA6);								//R/W is reseted
+	GPIO_PORTD_DATA_R |= (1 << PORTD2);									//pull the enable to high
+	delay_ms(1);																				//enable high hold time
+	GPIO_PORTD_DATA_R &= ~(1 << PORTD2);								//pull the enable to low
 	delay_us(1);
-	GPIO_PORTD_DATA_R &= ~(0x04);
-	delay_us(1);
+
 }
 
 void LCD_data(unsigned char c)
 {
     GPIO_PORTB_DATA_R = c;                				  //ready up data to be displayed
     if(c & 0x40) GPIO_PORTD_DATA_R |= (1 << PORTD3);
-	else GPIO_PORTD_DATA_R &= ~(1 << PORTD3);
-	GPIO_PORTD_DATA_R |= (1 << PORTD0);   				  //RS is set
-	GPIO_PORTD_DATA_R &= ~(1 << PORTD1);  				  //R/W is reseted
-	GPIO_PORTD_DATA_R |= (1 << PORTD2);	 				  //pull the enable to high
-	delay_us(1);						  				  //enable high hold time
-	GPIO_PORTD_DATA_R &= ~(1 << PORTD2);  				  //pull the enable to low
-	delay_us(1);
+		else GPIO_PORTD_DATA_R &= ~(1 << PORTD3);
+		GPIO_PORTA_DATA_R |= (1 << PORTA5);   				  //RS is set
+		GPIO_PORTA_DATA_R &= ~(1 << PORTA6);  				  //R/W is reseted
+		GPIO_PORTD_DATA_R |= (1 << PORTD2);	 				  //pull the enable to high
+		delay_us(1);						  				  //enable high hold time
+		GPIO_PORTD_DATA_R &= ~(1 << PORTD2);  				  //pull the enable to low
+		delay_us(1);
 }
 
 

@@ -22,7 +22,7 @@ int main(void)
 	delay_ms(2000);
     while (1)
     {
-        		while(cont){
+        while(cont){
 				get_nema_string(arr , &cont);
 			}
 			cont = 1;
@@ -39,6 +39,6 @@ int main(void)
 	}
 			LCD_display_string(int_to_char(distance));
 			delay_ms(10000);
-    
-    return 0;
+	return 0;
+    }
 }
