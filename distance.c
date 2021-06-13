@@ -27,6 +27,6 @@ void calcDistance(double long11, double long22, double lat11, double lat22 , dou
 
     double x = pow(sin(degtorad(0.5 * (lat2 - lat1))), 2) + (cos(degtorad(lat1)) * cos(degtorad(lat2)) * pow(sin(degtorad(0.5 * (long2  - long1))), 2));
 
-    *amount =  2 ERAD1000* asin(sqrt(x));
+    *amount =  2 *ERAD*1000* asin(sqrt(x));
 
 }
