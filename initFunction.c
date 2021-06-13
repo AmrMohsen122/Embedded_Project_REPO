@@ -56,4 +56,13 @@ void init_ports(){
 	GPIO_PORTD_DIR_R |= (1 << PORTD7) ; 						//Enable PIN D7 as output for GPS
 	GPIO_PORTD_DEN_R |= ((1 << PORTD6) | (1 << PORTD7) ); 		//enable PINS D6, D7 as Digital pins
 	UART2_CTL_R |= (0x01); 										// Enable UART2 Tx, Rx
+	// Switch Intialization
+	             
+    GPIO_PORTF_CR_R |= (1<< PORTF0);                       // unlock commit register for port F0
+	GPIO_PORTF_PUR_R |= (1<< PORTF0);                     // activate pull up resistor for switche
+    GPIO_PORTF_DIR_R &= ~(1<< PORTF0);                   // set pin F0 as input
+	GPIO_PORTF_DEN_R |= (1<< PORTF0); 					// digital enable for pins 0
+    GPIO_PORTF_AMSEL_R &= ~(1<< PORTF0);               	// disable analog mode select for pins 0
+	GPIO_PORTF_PCTL_R &= ~0x00000000F;        			// disable PTCL register
+    GPIO_PORTF_AFSEL_R &= ~(1<< PORTF0);             // disable alternate functions for pins F0
 }
