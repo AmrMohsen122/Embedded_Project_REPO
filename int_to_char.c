@@ -13,8 +13,8 @@ void reverseArray(char *arr, char *reversed) {
 
 char *int_to_char(int x){
 	int i;
-	char arr[5];
-	static char reversed[5];
+	static char arr[5];
+	
 	if(x == 0){
 		arr[0] = '0';
 		arr[1] = '\0';
@@ -27,6 +27,6 @@ char *int_to_char(int x){
 		}
 	
 	}
-	reverseArray(arr,reversed);
-	return reversed;	
+	
+	return arr;	
 }
